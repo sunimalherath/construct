@@ -19,6 +19,7 @@ type Customer struct {
 	transactions []valueobject.Transaction
 }
 
+// NewCustomer is a factory to create a new customer.
 func NewCustomer(name string) (Customer, error) {
 	if name == "" {
 		return Customer{}, ErrInvalidPerson
