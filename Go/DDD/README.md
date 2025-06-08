@@ -7,9 +7,9 @@
 ### Value Objects
 
 - Don't have unique identifiers
-- But are mutable
+- But are immutable
 
 ### Aggregates
 
-Aggregates are formed by combining Entities and Value Objects. These have root identity which helps to identify the aggregates. 
+Aggregates are formed by combining Entities and Value Objects. These have root identity (should have only one) which helps to identify the aggregates. 
 Business logic added to aggregates. 
