@@ -11,4 +11,4 @@ kubectl run nginx --image=nginx --dry-run=client -o yaml
 1. kubectl create -f nginx.yaml
 2. kubectl apply -f nginx.yaml
 
-
+#### The difference between the two...
