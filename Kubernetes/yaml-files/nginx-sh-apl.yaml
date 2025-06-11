@@ -3,7 +3,8 @@ kind: Pod
 metadata:
   labels:
     run: nginx
-  name: nginx-yaml
+    pod-created: from-apply-command
+  name: nginx-yaml-apl
 spec:
   containers:
   - image: nginx
