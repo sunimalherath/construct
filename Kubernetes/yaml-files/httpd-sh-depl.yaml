@@ -15,5 +15,10 @@ spec:
         app: my-httpd-depl
     spec:
       containers:
-      - image: httpd:alpine3.22
+      - image: httpd:2
         name: httpd
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
