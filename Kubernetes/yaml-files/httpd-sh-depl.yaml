@@ -15,5 +15,5 @@ spec:
         app: my-httpd-depl
     spec:
       containers:
-      - image: httpd
+      - image: httpd:alpine3.22
         name: httpd
