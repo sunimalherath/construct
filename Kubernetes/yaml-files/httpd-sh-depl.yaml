@@ -17,6 +17,8 @@ spec:
       containers:
       - image: httpd:2
         name: httpd
+        command: ["/bin/bash", "-c"]
+        args: ["sleep; exit 1"]
   strategy:
     type: RollingUpdate
     rollingUpdate:
