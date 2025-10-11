@@ -6,9 +6,9 @@ import (
 )
 
 type Book struct {
-	Title  string
-	Author string
-	ISBN   string
+	Title  string `json:"title"`
+	Author string `json:"author"`
+	ISBN   string `json:"isbn"`
 }
 
 func (b Book) ToJSON() []byte {
@@ -31,6 +31,17 @@ func FromJSON(data []byte) Book {
 	return book
 }
 
+var books = []Book{
+	{Title: "Go", Author: "John", ISBN: "0123456789"},
+	{Title: "Swift", Author: "Jane", ISBN: "9876543210"},
+}
+
 func BooksHandleFunc(w http.ResponseWriter, r *http.Request) {
-	//
+	booksJData, err := json.Marshal(books)
+	if err != nil {
+		panic(err)
+	}
+
+	w.Header().Add("Content Type", "application/json; charset-udf-8")
+	w.Write(booksJData)
 }
