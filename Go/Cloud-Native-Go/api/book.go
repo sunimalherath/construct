@@ -36,7 +36,11 @@ var books = []Book{
 	{Title: "Swift", Author: "Jane", ISBN: "9876543210"},
 }
 
-func BooksHandleFunc(w http.ResponseWriter, r *http.Request) {
+func AllBooks() []Book {
+	return books
+}
+
+func writeJSON(w http.ResponseWriter, books []Book) {
 	booksJData, err := json.Marshal(books)
 	if err != nil {
 		panic(err)
@@ -44,4 +48,15 @@ func BooksHandleFunc(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Add("Content Type", "application/json; charset-udf-8")
 	w.Write(booksJData)
+}
+
+func BooksHandleFunc(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case http.MethodGet:
+		books := AllBooks()
+		writeJSON(w, books)
+	default:
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("Unsupported request method"))
+	}
 }
