@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"io"
 	"net/http"
 )
 
@@ -40,6 +41,12 @@ func AllBooks() []Book {
 	return books
 }
 
+func CreateBook(book Book) (string, bool) {
+	books = append(books, book)
+
+	return book.ISBN, true
+}
+
 func writeJSON(w http.ResponseWriter, books []Book) {
 	booksJData, err := json.Marshal(books)
 	if err != nil {
@@ -55,6 +62,21 @@ func BooksHandleFunc(w http.ResponseWriter, r *http.Request) {
 	case http.MethodGet:
 		books := AllBooks()
 		writeJSON(w, books)
+	case http.MethodPost:
+		body, err := io.ReadAll(r.Body)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+		}
+
+		book := FromJSON(body)
+
+		isbn, created := CreateBook(book)
+		if created {
+			w.Header().Add("location", "/api/books/"+isbn)
+		} else {
+			w.WriteHeader(http.StatusConflict)
+		}
+
 	default:
 		w.WriteHeader(http.StatusBadRequest)
 		w.Write([]byte("Unsupported request method"))
