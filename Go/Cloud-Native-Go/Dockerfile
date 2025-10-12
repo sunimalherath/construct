@@ -1,14 +1,10 @@
-FROM golang:1.24.3-alpine3.20
+FROM alpine:3.22
 
-MAINTAINER Sunimal Herath
+COPY ./cloud-native-go /app/cloud-native-go 
 
-ENV SOURCES /home/sunio/Developer/Projects/construct/Go/Cloud-Native-Go/
-
-COPY . ${SOURCES}
-
-RUN cd ${SOURCES} && CGO_ENABLED=0 go install
+RUN chmod +x /app/cloud-native-go 
 
 ENV PORT 8080
 EXPOSE 8080
 
-ENTRYPOINT cloud-native-go
+ENTRYPOINT /app/cloud-native-go
