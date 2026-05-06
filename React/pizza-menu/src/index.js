@@ -71,18 +71,17 @@ function Menu() {
   return (
     <main className="menu">
       <h2>Our Menu</h2>
-      <Pizza
+      <div>
+        {pizzaData.map((pizza) => (
+          <Pizza pizzaObj={pizza} />
+        ))}
+      </div>
+      {/* <Pizza
         name="Pizza Spinaci"
         photoName="pizzas/spinaci.jpg"
         ingredients="Tomato, mozarella, spinach, and ricotta cheese"
         price={10}
-      />
-      <Pizza
-        name="Pizza Funghi"
-        photoName="pizzas/funghi.jpg"
-        ingredients="Fungus, mozarella, and some other cheese"
-        price={15}
-      />
+      /> */}
     </main>
   );
 }
@@ -90,13 +89,14 @@ function Menu() {
 function Pizza(props) {
   return (
     <div className="pizza">
-      <img src={props.photoName} alt={props.name} />
-      <h3>{props.name}</h3>
-      <p>{props.ingredients}</p>
-      <span>{props.price + 2}</span>
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <h3>{props.pizzaObj.name}</h3>
+      <p>{props.pizzaObj.ingredients}</p>
+      <span>{props.pizzaObj.price + 2}</span>
     </div>
   );
 }
+
 function Footer() {
   const hour = new Date().getHours();
 
