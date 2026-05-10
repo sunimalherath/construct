@@ -68,8 +68,8 @@ function Header() {
 }
 
 function Menu() {
-  // const pizzaList = pizzaData;
-  const pizzaList = [];
+  const pizzaList = pizzaData;
+  // const pizzaList = [];
   // const numPizzas = pizzaData.length;
   const numPizzas = pizzaList.length;
 
@@ -96,6 +96,8 @@ function Menu() {
 }
 
 function Pizza(props) {
+  if (props.pizzaObj.soldOut) return null;
+
   return (
     <li className="pizza">
       <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
@@ -117,6 +119,14 @@ function Footer() {
   console.log(isOpen);
   // if (hour >= 10 && hour <= closeHour) alert("We're currently open.");
   // else alert("Sorry, we're closed!");
+
+  //if (!isOpen) {
+  //  return(
+  //      <p>
+  //        We're happy to have you between {openHour}:00 and {closeHour}:00.{" "}
+  //      </p>
+  //  );
+  //}
 
   return (
     <footer className="footer">
