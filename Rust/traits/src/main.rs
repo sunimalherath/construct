@@ -40,6 +40,17 @@ impl Printer for GeoLocation {
     }
 }
 
+struct GraphLocation {
+    x: u32,
+    y: u32,
+}
+
+impl Printer for GraphLocation {
+    fn print_location(&self) {
+        println!("X: {}, Y: {}", &self.x, &self.y);
+    }
+}
+
 fn main() {
     let my_location = GeoLocation {
         latitude: String::from("some lat"),
@@ -51,6 +62,12 @@ fn main() {
     print_formatter(&my_location);
 
     print_formatter_simplyfied(&my_location);
+
+    let my_plot = GraphLocation { x: 34, y: 52 };
+
+    print_formatter(&my_plot);
+
+    print_formatter_simplyfied(&my_plot);
 }
 
 fn print_formatter(item: &impl Printer) {
