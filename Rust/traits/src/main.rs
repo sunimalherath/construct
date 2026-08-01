@@ -1,3 +1,30 @@
+// trait Shape {
+//     fn calc_area(&self) -> f64;
+// }
+
+// #[derive(Debug)]
+// struct Circle {
+//     radius: f64,
+// }
+
+// #[derive(Debug)]
+// struct Rectangle {
+//     width: f64,
+//     height: f64,
+// }
+
+// impl Shape for Circle {
+//     fn calc_area(&self) -> f64 {
+//         3.14 * self.radius * self.radius
+//     }
+// }
+
+// impl Shape for Rectangle {
+//     fn calc_area(&self) -> f64 {
+//         self.width * self.height
+//     }
+// }
+
 trait Printer {
     fn print_location(&self);
 }
