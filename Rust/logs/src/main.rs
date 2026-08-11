@@ -1,4 +1,4 @@
-use std::{fs, io::read_to_string};
+use std::{fs, io::Error};
 
 fn extract_errors(text: &str) -> Vec<&str> {
     let all_text = text.split("\n");
@@ -14,12 +14,12 @@ fn extract_errors(text: &str) -> Vec<&str> {
     err_text
 }
 
-fn main() {
-    // using the expect method of the Result enum instead of the match statements
-    let text = fs::read_to_string("logs.txt").expect("failed to read the logs.txt");
+fn main() -> Result<(), Error> {
+    let text = fs::read_to_string("logs.txt")?;
     let error_log = extract_errors(text.as_str());
-    fs::write("errors.txt", error_log.join("/n")).expect("failed to write to the errors file");
+    fs::write("errors.txt", error_log.join("/n"))?;
 
+    Ok(())
     // match fs::read_to_string("logs.txt") {
     //     Ok(text) => {
     //         let error_log = extract_errors(text.as_str());
