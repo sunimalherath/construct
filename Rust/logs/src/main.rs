@@ -1,6 +1,7 @@
 use std::fs;
 
 fn extract_errors(text: &str) -> Vec<String> {
+    // not a good approach if the file contains loads of data.
     let all_text = text.split("\n");
 
     let mut err_text = vec![];
