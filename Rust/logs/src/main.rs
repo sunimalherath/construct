@@ -1,13 +1,13 @@
 use std::fs;
 
-fn extract_errors(text: &str) -> Vec<&str> {
+fn extract_errors(text: &str) -> Vec<String> {
     let all_text = text.split("\n");
 
     let mut err_text = vec![];
 
     for line in all_text {
         if line.starts_with("ERROR") {
-            err_text.push(line);
+            err_text.push(line.to_string());
         }
     }
 
