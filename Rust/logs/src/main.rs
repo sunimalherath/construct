@@ -15,12 +15,16 @@ fn extract_errors(text: &str) -> Vec<&str> {
 }
 
 fn main() {
+    let mut error_log = vec![];
+
     match fs::read_to_string("logs.txt") {
         Ok(text) => {
-            println!("error text {:#?}", extract_errors(text.as_str()));
+            error_log = extract_errors(text.as_str());
         }
         Err(msg) => {
             println!("{}", msg);
         }
     }
+
+    println!("{:#?}", error_log);
 }
