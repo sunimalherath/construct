@@ -11,7 +11,7 @@ impl Stack {
         self.items.pop()
     }
 
-    pub fn put(&mut self, item: String) -> Self {
+    pub fn put(&mut self, item: String)  {
         self.items.push(item);
     }
 
