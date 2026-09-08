@@ -17,6 +17,8 @@ enum Media {
     Book { title: String, author: String },
     Movie { title: String, director: String },
     Audiobook { title: String },
+    Podcase(u32), // without name field - u32 represent the episode number.
+    Placeholder,  // no fields at all.
 }
 
 fn print_media(media: &Media) {
@@ -35,6 +37,10 @@ impl Media {
             Media::Audiobook { title } => {
                 format!("Audiobook: {}", title)
             }
+            Media::Podcase(id) => {
+                format!("Podcast episode: {}", id)
+            }
+            Media::Placeholder => format!("Placeholder"),
         }
     }
 }
@@ -64,11 +70,16 @@ fn main() {
     println!("{}", mv.media_description());
     println!("{}", ab.media_description());
 
+    let pc = Media::Podcase(4);
+    let pl = Media::Placeholder;
+
     // Catalog operations
     let mut catalog = Catalog::new();
 
     catalog.add(bk);
     catalog.add(mv);
+    catalog.add(pc);
+    catalog.add(pl);
 
     println!("Items in the catalog: {}", catalog.items.len());
 }
