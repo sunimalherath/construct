@@ -1,8 +1,22 @@
+struct Catalog {
+    items: Vec<Media>,
+}
+
+impl Catalog {
+    fn new() -> Self {
+        Catalog { items: vec![] }
+    }
+
+    fn add(&mut self, media: Media) {
+        self.items.push(media);
+    }
+}
+
 #[derive(Debug)]
 enum Media {
     Book { title: String, author: String },
     Movie { title: String, director: String },
-    Audiobook { title: String }
+    Audiobook { title: String },
 }
 
 fn print_media(media: &Media) {
@@ -23,29 +37,38 @@ impl Media {
             }
         }
     }
-    
 }
 
 fn main() {
-    let bk = Media::Book { 
-        title: String::from("Martian"), 
+    let bk = Media::Book {
+        title: String::from("Martian"),
         author: String::from("Andy W"),
     };
 
     print_media(&bk);
 
-    let mv = Media::Movie { 
-        title: String::from("Titanic") , 
-        director: String::from("James Cameron")
+    let mv = Media::Movie {
+        title: String::from("Titanic"),
+        director: String::from("James Cameron"),
     };
 
     print_media(&mv);
 
-    let ab = Media::Audiobook { title: String::from("I am legand") };
+    let ab = Media::Audiobook {
+        title: String::from("I am legand"),
+    };
 
     print_media(&ab);
 
     println!("{}", bk.media_description());
-    println!("{}",mv.media_description());
+    println!("{}", mv.media_description());
     println!("{}", ab.media_description());
+
+    // Catalog operations
+    let mut catalog = Catalog::new();
+
+    catalog.add(bk);
+    catalog.add(mv);
+
+    println!("Items in the catalog: {}", catalog.items.len());
 }
