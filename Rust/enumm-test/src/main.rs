@@ -82,4 +82,13 @@ fn main() {
     catalog.add(pl);
 
     println!("Items in the catalog: {}", catalog.items.len());
+
+    match catalog.items.get(8) {
+        None => {
+            println!("Nothing at that index");
+        }
+        Some(value) => {
+            print_media(value);
+        }
+    }
 }
