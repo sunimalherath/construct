@@ -10,6 +10,10 @@ impl Catalog {
     fn add(&mut self, media: Media) {
         self.items.push(media);
     }
+
+    fn get_by_index(&self, index: usize) -> Option<&Media> {
+        self.items.get(index)
+    }
 }
 
 #[derive(Debug)]
@@ -89,6 +93,15 @@ fn main() {
         }
         Some(value) => {
             print_media(value);
+        }
+    }
+
+    match catalog.get_by_index(1) {
+        Some(value) => {
+            print_media(value);
+        }
+        None => {
+            println!("Nothing at that index");
         }
     }
 }
